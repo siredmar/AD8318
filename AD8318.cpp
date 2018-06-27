@@ -27,21 +27,21 @@ double AD8318::Convert(uint16_t val)
 
 Value AD8318::GetValue_dBm(uint16_t raw)
 {
-	double val = convert(raw);
+	double val = Convert(raw);
 	Value ret(val, Unit::dBm);
 	return ret;
 }
 
 Value AD8318::GetValue_W(uint16_t raw)
 {
-	double val = convert(raw);
-	return convertDbmToW(val);
+	double val = Convert(raw);
+	return ConvertDbmToW(val);
 }
 
-Value AD8318::ConvertDbmToW(double val)
+Value AD8318::ConvertDbmToW(double dbm)
 {
-	double val = pow(10.0, val / 10.0);
-	UnitType unit = UnitType::W;
+	double val = pow(10.0, dbm / 10.0);
+	Unit unit = Unit::W;
 
 	if (val < 0.000001 )
 	{

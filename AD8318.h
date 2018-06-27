@@ -11,7 +11,7 @@
 #pragma once
 #include <Arduino.h>
 
-class enum UnitType
+enum class Unit
 {
 	dBm,
 	pW,
@@ -24,19 +24,19 @@ class enum UnitType
 class Value
 {
   public:
-	Value(double value, UnitType unit);
+	Value(double value, Unit unit);
 
-	UnitType Unit()
+	Unit GetUnit()
 	{
 		return unit;
 	}
 
-	double Value()
+	double GetValue()
 	{
 		return value;
 	}
   private:
-	UnitType unit;
+	Unit unit;
 	double value;
 };
 
@@ -44,8 +44,8 @@ class AD8318
 {
   public:
     AD8318();
-	Value GetValue_dBm();
-	Value GetValue_W();
+	Value GetValue_dBm(uint16_t raw);
+	Value GetValue_W(uint16_t raw);
   private:
 	double Convert(uint16_t val);
 	Value ConvertDbmToW(double val);
@@ -55,4 +55,3 @@ class AD8318
     double mK3;
 	double mOffset;
 };
-#endif
