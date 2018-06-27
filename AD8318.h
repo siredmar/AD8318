@@ -26,12 +26,12 @@ class Value
   public:
 	Value(double value, UnitType unit);
 
-	Unit()
+	UnitType Unit()
 	{
 		return unit;
 	}
 
-	Value()
+	double Value()
 	{
 		return value;
 	}
